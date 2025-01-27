@@ -21,12 +21,12 @@ SubScan is a powerful and lightweight Chrome extension designed for bug bounty h
 
 1. Download the repository from GitHub:
    ```bash
-   git clone https://github.com/ractiurd/subscan.git
+   git clone https://github.com/ractiurd/SubScan.git
    ```
 
 2. Open Google Chrome and navigate to `chrome://extensions/`
 3. Enable **Developer mode** (toggle on the top-right corner).
-4. Click on **Load unpacked** and select the cloned `subscan` directory.
+4. Click on **Load unpacked** and select the cloned `SubScan` directory.
 5. The extension should now be visible in your Chrome toolbar.
 
 ## Configuration
