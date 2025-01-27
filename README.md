@@ -69,4 +69,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## 🌍 Stand for Palestine 🇵🇸
+
+We stand in solidarity with the people of Palestine and encourage everyone to **raise awareness, support charitable causes, and take a stand against genocide and injustice.** Together, we can make a difference.
+
+### 💡 How You Can Help:
+- **Educate** yourself and others about the ongoing situation.
+- **Donate** to trusted humanitarian organizations providing aid to Palestinian families.
+- **Advocate** for justice and speak out against oppression.
+- **Support** Palestinian businesses and initiatives.
+
+> _"Injustice anywhere is a threat to justice everywhere." – Martin Luther King Jr._
+
+Consider contributing to verified organizations working towards humanitarian aid and relief efforts in Palestine.
+
+--- 
+
+
+---
+
 Happy Bug Hunting! 🐞
