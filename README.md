@@ -40,7 +40,7 @@ SubScan is a powerful and lightweight Chrome extension designed for bug bounty h
 ## Screenshot
 
 ![SubScan Screenshot](https://github.com/Ractiurd/SubScan/blob/main/SubScan.png)
-![SubScan Screenshot](https://github.com/Ractiurd/SubScan/blob/main/result.png)
+![SubScan Screenshot](https://github.com/Ractiurd/SubScan/blob/main/resultSubScan.png)
 
 
 ## Contributing
@@ -52,7 +52,6 @@ Bug bounty hunters and security researchers are welcome to contribute to SubScan
 **Mahedi Hasan (Ractiurd)**  
 - [Twitter](https://x.com/ractiurd)
 - [Facebook](https://facebook.com/ractiurd)
-- [GitHub](https://github.com/ractiurd)
 - [Bugcrowd](https://bugcrowd.com/Ractiurd)
 - [HackerOne](https://hackerone.com/ractiurd)
 
