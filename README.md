@@ -29,6 +29,14 @@ SubScan is a powerful and lightweight Chrome extension designed for bug bounty h
 4. Click on **Load unpacked** and select the cloned `subscan` directory.
 5. The extension should now be visible in your Chrome toolbar.
 
+## Configuration
+
+To fetch subdomains from Shodan, you need to provide your Shodan API key in the `popup.js` file:
+
+```javascript
+const apiKey = "YOUR_SHODAN_API_KEY_HERE"; // Place your Shodan API key here
+```
+
 ## Usage
 
 1. Click on the SubScan icon in your Chrome toolbar.
