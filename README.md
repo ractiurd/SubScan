@@ -39,7 +39,7 @@ SubScan is a powerful and lightweight Chrome extension designed for bug bounty h
 
 ## Screenshot
 
-![SubScan Screenshot](https://via.placeholder.com/800x400.png?text=SubScan+Chrome+Extension)
+![SubScan Screenshot](https://github.com/Ractiurd/SubScan/blob/main/SubScan.png)
 
 ## Contributing
 
