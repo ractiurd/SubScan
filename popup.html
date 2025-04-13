@@ -1,81 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SubScan</title>
-    <link rel="stylesheet" href="popup.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SubScan</title>
+  <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">SubScan</h1>
+  <div class="container">
+    <h1 class="title">SubScan</h1>
 
-        <div class="form-container">
-            <label for="domain">Domain:</label>
-            <input type="text" id="domain" placeholder="Enter domain (e.g., example.com)" />
+    <div class="form-container">
+      <label for="domain">Domain:</label>
+      <input type="text" id="domain" placeholder="Enter domain (e.g., example.com)" />
 
-            <div class="checkboxes">
-                <label class="checkbox-container">
-                    <input type="checkbox" id="useRapidDNS">
-                    <span class="checkbox"></span>
-                     RapidDNS
-                </label>
+      <div class="checkboxes">
 
-                <label class="checkbox-container">
-                    <input type="checkbox" id="useAPI">
-                    <span class="checkbox"></span>
-                     AlienVault
-                </label>
 
-                <label class="checkbox-container">
-                    <input type="checkbox" id="useSubdomainCenter">
-                    <span class="checkbox"></span>
-                     Subdomain Center
-                </label>
+        <label class="checkbox-container">
+          <input type="checkbox" id="useAPI" checked />
+          <span class="checkbox"></span>
+          AlienVault
+        </label>
 
-                <label class="checkbox-container">
-                  <input type="checkbox" id="useCertspotter">
-                  <span class="checkbox"></span>
-                   Certspotter
-                </label>
-                
-                <label class="checkbox-container">
-                  <input type="checkbox" id="useCRTSh">
-                  <span class="checkbox"></span>
-                   Crt.sh
-              </label>
+        <label class="checkbox-container">
+          <input type="checkbox" id="useHackerTarget" checked />
+          <span class="checkbox"></span>
+          HackerTarget
+        </label>
 
-              <label class="checkbox-container">
-                <input type="checkbox" id="useShodan">
-                <span class="checkbox"></span>
-                 Shodan
-            </label>
-            </div>
+        <label class="checkbox-container">
+         <input type="checkbox" id="useLeakIX" checked />
+         <span class="checkbox"></span>
+         LeakIX
+        </label>
 
-            <div class="actions">
-                <button id="fetch">Fetch</button>
-                <button id="copy">Copy</button>
-                <button id="download">Download</button>
-            </div>
-        </div>
 
-        <div class="results-container">
-            <h2>Results</h2>
-            <pre id="results">Results will appear here...</pre>
-        </div>
+        <label class="checkbox-container">
+          <input type="checkbox" id="useCertspotter" checked />
+          <span class="checkbox"></span>
+          Certspotter
+        </label>
 
-        <div class="author">
-            <p>Creator: Mahedi Hasan (Ractiurd)</p>
-            <p>
-                <a href="https://x.com/ractiurd" target="_blank">Twitter</a> |
-                <a href="https://facebook.com/ractiurd" target="_blank">Facebook</a> |
-                <a href="https://github.com/ractiurd" target="_blank">GitHub</a> |
-                <a href="https://bugcrowd.com/Ractiurd" target="_blank">Bugcrowd</a> |
-                <a href="https://hackerone.com/ractiurd" target="_blank">HackerOne</a>
-            </p>
-        </div>
+        <label class="checkbox-container">
+          <input type="checkbox" id="useCRTSh" checked />
+          <span class="checkbox"></span>
+          Crt.sh
+        </label>
+
+        <label class="checkbox-container">
+          <input type="checkbox" id="useAnubis" checked />
+          <span class="checkbox"></span>
+          Anubis
+        </label>
+
+ 
+
+        <label class="checkbox-container">
+          <input type="checkbox" id="useShodan" />
+          <span class="checkbox"></span>
+          Shodan
+        </label>
+      </div>
+
+      <div class="actions">
+        <button id="fetch">Fetch</button>
+        <button id="copy">Copy</button>
+        <button id="download">Download</button>
+      </div>
     </div>
 
-    <script src="popup.js"></script>
+    <div class="results-container">
+      <h2>Results</h2>
+      <pre id="results">Results will appear here...</pre>
+    </div>
+
+    <div class="author">
+      <p>Creator: Mahedi Hasan (Ractiurd)</p>
+      <p>
+        <a href="https://x.com/ractiurd" target="_blank">Twitter</a> |
+        <a href="https://facebook.com/ractiurd" target="_blank">Facebook</a> |
+        <a href="https://github.com/ractiurd" target="_blank">GitHub</a> |
+        <a href="https://bugcrowd.com/Ractiurd" target="_blank">Bugcrowd</a> |
+        <a href="https://hackerone.com/ractiurd" target="_blank">HackerOne</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
 </body>
 </html>
