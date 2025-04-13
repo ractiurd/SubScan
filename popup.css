@@ -2,12 +2,17 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  width: 300px;
+  width: 320px;
   background-color: #fafafa;
   color: #333;
+  min-height: 600px;
 }
 
-/* Adjust title to move it higher */
+.container {
+  width: 100%;
+}
+
+/* Title */
 h1.title {
   text-align: center;
   font-size: 24px;
@@ -15,7 +20,7 @@ h1.title {
   margin-top: 0;
 }
 
-/* Input field styling */
+/* Input field */
 input[type="text"] {
   width: 100%;
   padding: 12px;
@@ -25,10 +30,18 @@ input[type="text"] {
   font-size: 14px;
 }
 
-/* Button Styling */
-button {
-  width: 100%;
-  padding: 12px;
+/* Action buttons */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 10px;
+  font-size: 13px;
   border-radius: 5px;
   border: 1px solid #ccc;
   background-color: #fff;
@@ -37,22 +50,21 @@ button {
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 14px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
+.actions button:hover {
   background-color: #f5f5f5;
   border-color: #bbb;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
-button:focus {
+.actions button:focus {
   outline: none;
   box-shadow: 0 0 5px #007bff;
 }
 
-/* Specific button styles for Fetch, Copy, and Download */
+/* Specific buttons */
 #fetch, #copy, #download {
   background-color: #f1f1f1;
   border-color: #ddd;
@@ -62,28 +74,27 @@ button:focus {
   background-color: #e0e0e0;
 }
 
-/* Button container */
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
+/* Result box */
+.results-container h2 {
+  font-size: 16px;
+  margin-top: 20px;
 }
 
-/* Results container styling */
 #results {
   white-space: pre-wrap;
   word-wrap: break-word;
-  margin-top: 20px;
-  padding: 12px;
+  margin-top: 10px;
+  padding: 15px;
   background-color: #f4f4f4;
   border-radius: 5px;
-  height: 150px;
-  overflow-y: scroll;
+  height: 250px;
+  overflow-y: auto;
   border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
-/* Styling for the checkbox container */
+/* Checkboxes */
 .checkboxes {
   display: flex;
   flex-wrap: wrap;
@@ -102,7 +113,6 @@ button:focus {
   margin-right: 8px;
 }
 
-/* Styling for the checkbox itself */
 .checkbox-container input[type="checkbox"] {
   display: none;
 }
@@ -142,12 +152,7 @@ button:focus {
   border-color: #4CAF50;
 }
 
-/* Styling for the form container */
-.form-container {
-  margin-bottom: 20px;
-}
-
-/* Author styling */
+/* Author info */
 .author {
   text-align: center;
   margin-top: 15px;
@@ -169,30 +174,14 @@ button:focus {
   color: #1877F2;
 }
 
-.author a:nth-child(2):hover {
-  text-decoration: underline;
-}
-
 .author a:nth-child(3) {
   color: #333;
-}
-
-.author a:nth-child(3):hover {
-  text-decoration: underline;
 }
 
 .author a:nth-child(4) {
   color: #28a745;
 }
 
-.author a:nth-child(4):hover {
-  text-decoration: underline;
-}
-
 .author a:nth-child(5) {
   color: #1B1B1B;
-}
-
-.author a:nth-child(5):hover {
-  text-decoration: underline;
 }
