@@ -3,21 +3,28 @@
   "name": "SubScan",
   "version": "1.0",
   "description": "Creator: Mahedi Hasan (Ractiurd). Unleash your inner hacker with SubScan. A tool designed for bug bounty hunters to discover subdomains across multiple sources like Subdomain Center, RapidDNS, Shodan, Certspotter, and more. Level up your recon game. Follow me on: GitHub: https://github.com/ractiurd, Twitter: https://x.com/ractiurd, Bugcrowd: https://bugcrowd.com/Ractiurd, HackerOne: https://hackerone.com/ractiurd",
-  "permissions": ["downloads", "activeTab"],
+  "permissions": [
+    "downloads",
+    "activeTab",
+    "storage"
+  ],
   "host_permissions": [
     "https://api.subdomain.center/*",
     "https://rapiddns.io/*",
     "https://otx.alienvault.com/*",
     "https://crt.sh/*",
     "https://api.shodan.io/*",
-    "https://api.certspotter.com/*"
+    "https://api.certspotter.com/*",
+    "https://api.hackertarget.com/*",
+    "https://jldc.me/*",
+    "https://leakix.net/*",
+    "https://corsproxy.io/*"
   ],
   "action": {
     "default_popup": "popup.html"
   },
   "content_security_policy": {
-    "script-src": "'self';",
-    "object-src": "'none';"
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src 'self' https://api.subdomain.center https://rapiddns.io https://otx.alienvault.com https://crt.sh https://api.shodan.io https://api.certspotter.com https://api.hackertarget.com https://jldc.me https://leakix.net https://corsproxy.io"
   },
   "homepage_url": "https://github.com/Ractiurd/SubScan"
 }
