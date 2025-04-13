@@ -1,63 +1,92 @@
-document.getElementById("fetch").addEventListener("click", async () => {
-  const domain = document.getElementById("domain").value.trim();
+document.addEventListener("DOMContentLoaded", function () {
+  // Load saved results when extension opens
+  let storedSubdomains = JSON.parse(localStorage.getItem('subdomains')) || [];
+
+  // Fetch button click event
+  document.getElementById("fetch").addEventListener("click", async () => {
+    const domain = document.getElementById("domain").value.trim();
+    const resultsElement = document.getElementById("results");
+
+    if (!domain) {
+      alert("Please enter a domain.");
+      return;
+    }
+
+    // Clear previous results when starting a new scan
+    storedSubdomains = [];
+    resultsElement.textContent = "Fetching subdomains...";
+
+   // const useRapidDNS = document.getElementById("useRapidDNS").checked;
+    const useAPI = document.getElementById("useAPI").checked;
+    const useCRTSh = document.getElementById("useCRTSh").checked;
+    const useCertspotter = document.getElementById("useCertspotter").checked;
+    const useHackerTarget = document.getElementById("useHackerTarget").checked;
+    const useAnubis = document.getElementById("useAnubis").checked;
+    const useLeakIX = document.getElementById("useLeakIX").checked;
+    //const useSubdomainCenter = document.getElementById("useSubdomainCenter").checked;
+    const useShodan = document.getElementById("useShodan").checked;
+  
+
+    let allSubdomains = [];
+
+    // Fetch subdomains based on selected checkboxes
+    if (useLeakIX) {
+      await fetchLeakIXSubdomains(domain, allSubdomains, resultsElement);
+    }
+
+
+
+    if (useCertspotter) {
+      await fetchCertspotterSubdomains(domain, allSubdomains, resultsElement);
+    }
+   // if (useRapidDNS) {
+   //   await fetchRapidDNS(domain, allSubdomains, resultsElement);
+    //}
+    if (useHackerTarget) {
+      await fetchHackerTargetSubdomains(domain, allSubdomains, resultsElement);
+    }
+    if (useAnubis) {
+      await fetchAnubisSubdomains(domain, allSubdomains, resultsElement);
+    }
+
+    if (useAPI) {
+      await fetchAlienVault(domain, allSubdomains, resultsElement);
+    }
+    if (useCRTSh) {
+      await fetchCRTShSubdomains(domain, allSubdomains, resultsElement);
+    }
+
+    if (useShodan) {
+      await fetchShodanSubdomains(domain, allSubdomains, resultsElement);
+    }
+
+    // Store the new results (with duplicates removed)
+    storedSubdomains = [...new Set(allSubdomains)];
+    localStorage.setItem('subdomains', JSON.stringify(storedSubdomains));
+
+    // Display the results
+    if (storedSubdomains.length > 0) {
+      resultsElement.textContent = storedSubdomains.join("\n");
+    } else {
+      resultsElement.textContent = "No subdomains found.";
+    }
+  });
+
+  // Show stored results when popup opens if they exist
   const resultsElement = document.getElementById("results");
-
-  if (!domain) {
-    alert("Please enter a domain.");
-    return;
+  if (storedSubdomains.length > 0) {
+    resultsElement.textContent = storedSubdomains.join("\n");
   }
 
-  resultsElement.textContent = "Fetching subdomains...";
-
-  const useRapidDNS = document.getElementById("useRapidDNS").checked;
-  const useAPI = document.getElementById("useAPI").checked;
-  const useCRTSh = document.getElementById("useCRTSh").checked;
-  const useCertspotter = document.getElementById("useCertspotter").checked;
-  const useSubdomainCenter = document.getElementById("useSubdomainCenter").checked;
-  const useShodan = document.getElementById("useShodan").checked;
-
-
-
-
-  let allSubdomains = [];
-
-  // Fetch subdomains based on selected checkboxes
-  
-
-  if (useCertspotter) {
-    await fetchCertspotterSubdomains(domain, allSubdomains, resultsElement);
-  }
-  if (useRapidDNS) {
-    await fetchRapidDNS(domain, allSubdomains, resultsElement);
-  }
-
-  if (useAPI) {
-    await fetchAlienVault(domain, allSubdomains, resultsElement);
-  }
-
-  if (useCRTSh) {
-    await fetchCRTShSubdomains(domain, allSubdomains, resultsElement);
-  }
-  if (useSubdomainCenter) {
-    await fetchSubdomainCenterSubdomains(domain, allSubdomains, resultsElement);
-  }
-  if (useShodan) {
-    await fetchShodanSubdomains(domain, allSubdomains, resultsElement);
-  }
-  
-
-  // Display the results
-  if (allSubdomains.length > 0) {
-    resultsElement.textContent = allSubdomains.join("\n");
-  } else {
-    resultsElement.textContent = "No subdomains found.";
-  }
+  // Rest of your existing functions (fetchCertspotterSubdomains, etc.) remain unchanged below this point
+  // ... [all your existing functions stay exactly as they were] ...
 });
 
-// Separate functions for each source
+
+/// Separate functions for each source
 // Fetch subdomains from Shodan
 async function fetchShodanSubdomains(domain, allSubdomains, resultsElement) {
-  const apiKey = "YOUR_SHODAN_API_KEY_HERE"; // Place your shodan api key here
+  const apiKey = " Place your shodan api key here"; // Place your shodan api key here
   const url = `https://api.shodan.io/dns/domain/${domain}?key=${apiKey}`;
 
   try {
@@ -141,7 +170,7 @@ async function fetchSubdomainCenterSubdomains(domain, allSubdomains, resultsElem
     if (matches) {
       const uniqueSubdomains = new Set(matches.map(subdomain => subdomain.trim()));
       allSubdomains.push(...uniqueSubdomains);
-      resultsElement.textContent = `Found ${uniqueSubdomains.size} subdomains.`;
+      
     } else {
       resultsElement.textContent = "No subdomains found.";
     }
@@ -239,7 +268,7 @@ async function fetchCRTShSubdomains(domain, allSubdomains, resultsElement) {
       });
 
       allSubdomains.push(...uniqueSubdomains);
-      resultsElement.textContent = `Found ${uniqueSubdomains.size} subdomains.`;
+      
     } catch (parseError) {
       throw new Error("Error parsing JSON response.");
     }
@@ -254,6 +283,19 @@ async function fetchCRTShSubdomains(domain, allSubdomains, resultsElement) {
 
 
 // Fetch subdomains from AlienVault API
+
+// Fetch subdomains from AlienVault API
+async function fetchAlienVault(domain, allSubdomains, resultsElement) {
+  const apiURLTemplate = `https://otx.alienvault.com/api/v1/indicators/domain/${domain}/url_list?limit=100&page=%d`;
+
+  try {
+    const apiSubdomains = await fetchURLsFromAPI(apiURLTemplate, domain);
+    allSubdomains.push(...apiSubdomains);
+  } catch (error) {
+    resultsElement.textContent = "Error fetching API data.";
+    alert("Error fetching API data: " + error.message);
+  }
+}
 async function fetchURLsFromAPI(apiURLTemplate, domain) {
   let allURLs = [];
   let page = 1;
@@ -346,3 +388,122 @@ document.getElementById("download").addEventListener("click", () => {
     alert("No data to download.");
   }
 });
+async function fetchHackerTargetSubdomains(domain, allSubdomains, resultsElement) {
+  const url = `https://api.hackertarget.com/hostsearch/?q=${domain}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    
+    const text = await response.text();
+    const uniqueSubdomains = new Set();
+
+    text.split('\n')
+      .filter(line => line.trim() && line.includes(domain))
+      .forEach(line => {
+        const subdomain = line.split(',')[0].trim();
+        if (subdomain) uniqueSubdomains.add(subdomain);
+      });
+
+    allSubdomains.push(...uniqueSubdomains);
+    
+  } catch (error) {
+    resultsElement.textContent += `\nHackerTarget error: ${error.message}`;
+    console.error("HackerTarget error:", error);
+  }
+}
+//checked for anubis
+async function fetchAnubisSubdomains(domain, allSubdomains, resultsElement) {
+  const url = `https://jldc.me/anubis/subdomains/${domain}`;
+  
+  try {
+    // Show loading status
+  
+    
+    const response = await fetch(url);
+    
+    // Check for API limitations or errors
+    if (response.status === 429) {
+      resultsElement.textContent += "\n[-] Anubis: Rate limit exceeded (try again later)";
+      return;
+    }
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const subdomains = await response.json();
+
+    // Add results and update status
+    if (subdomains.length > 0) {
+      allSubdomains.push(...subdomains);
+      resultsElement.textContent += `\n[+] Anubis found ${subdomains.length} subdomains`;
+    } else {
+      resultsElement.textContent += "\n[-] Anubis: No subdomains found";
+    }
+
+  } catch (error) {
+    const errorMsg = `\n[-] Anubis error: ${error.message || "Unknown error"}`;
+    resultsElement.textContent += errorMsg;
+    console.error("Anubis error:", error);
+  }
+}
+//fetch from leakx
+async function fetchLeakIXSubdomains(domain, allSubdomains, resultsElement) {
+  // Try direct connection first
+  let response;
+  try {
+    const directUrl = `https://leakix.net/domain/${domain}`;
+    response = await fetch(directUrl, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+      },
+      credentials: 'omit'
+    });
+  } catch (directError) {
+    // If direct fails, try CORS proxy
+    try {
+      resultsElement.textContent += "\n[!] Trying CORS proxy for LeakIX...";
+      const proxyUrl = 'https://corsproxy.io/?';
+      const targetUrl = encodeURIComponent(`https://leakix.net/domain/${domain}`);
+      response = await fetch(proxyUrl + targetUrl, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+      });
+    } catch (proxyError) {
+      resultsElement.textContent += `\n[-] LeakIX failed: ${proxyError.message}`;
+      console.error("LeakIX error:", proxyError);
+      return;
+    }
+  }
+
+  try {
+    const html = await response.text();
+    const subdomains = new Set();
+
+    // More robust regex pattern
+    const regex = /(?:<a [^>]*href="\/host\/[^"]*"[^>]*>|·)\s*([a-zA-Z0-9][a-zA-Z0-9.-]*\.(?:[a-zA-Z]{2,}|[a-zA-Z]+\.[a-zA-Z]+))/gi;
+    
+    let match;
+    while ((match = regex.exec(html)) !== null) {
+      const subdomain = match[1].trim().toLowerCase();
+      if (subdomain.endsWith(`.${domain.toLowerCase()}`)) {
+        subdomains.add(subdomain);
+      }
+    }
+
+    if (subdomains.size > 0) {
+      allSubdomains.push(...subdomains);
+      resultsElement.textContent += `\n[+] LeakIX found ${subdomains.size} subdomains`;
+    } else {
+      resultsElement.textContent += "\n[-] LeakIX: No valid subdomains found";
+    }
+  } catch (error) {
+    resultsElement.textContent += `\n[-] LeakIX parsing error: ${error.message}`;
+    console.error("LeakIX parsing error:", error);
+  }
+}
+
