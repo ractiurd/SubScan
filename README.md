@@ -3,12 +3,15 @@
 SubScan is a powerful and lightweight Chrome extension designed for bug bounty hunters and security researchers to fetch subdomains from various online resources with ease. It allows users to quickly gather subdomain information for a given domain using multiple sources.
 
 - **Multiple Data Sources**: Fetch subdomains from the following services:
-  - RapidDNS
+  - RapidDNS (removed on v1.1)
   - AlienVault
-  - Subdomain Center
+  - Subdomain Center(removed on v1.1)
   - Certspotter
   - Crt.sh
   - Shodan
+  - Anubis
+  - LeakIX
+  - HackerTarget
  
 - **User-Friendly Interface**: Simple input and checkboxes to select preferred data sources.
 - **Results Handling**:
