@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     storedSubdomains = [];
     resultsElement.textContent = "Fetching subdomains...";
 
-   // const useRapidDNS = document.getElementById("useRapidDNS").checked;
+    const useRapidDNS = document.getElementById("useRapidDNS").checked;
     const useAPI = document.getElementById("useAPI").checked;
     const useCRTSh = document.getElementById("useCRTSh").checked;
     const useCertspotter = document.getElementById("useCertspotter").checked;
@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (useCertspotter) {
       await fetchCertspotterSubdomains(domain, allSubdomains, resultsElement);
     }
-   // if (useRapidDNS) {
-   //   await fetchRapidDNS(domain, allSubdomains, resultsElement);
-    //}
+    if (useRapidDNS) {
+      await fetchRapidDNS(domain, allSubdomains, resultsElement);
+    }
     if (useHackerTarget) {
       await fetchHackerTargetSubdomains(domain, allSubdomains, resultsElement);
     }
